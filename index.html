@@ -1,0 +1,66 @@
+<main id=main></main>
+<button id=btn>シャッフル</button>
+
+<style>
+body {
+  text-align: center;
+}
+main > div {
+  text-align: left;
+  background-color: #f0f0f0;
+  margin: 10px 3em;
+  padding: 5px 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.5em;
+}
+</style>
+
+
+<script type="module">
+import { shuffle } from "https://js.sabae.cc/shuffle.js";
+
+const list = `デロイト
+ソニー
+伊藤忠
+MIXI
+セプテーニ
+ソフトバンク
+富士通
+ロート
+Sansan
+セコム
+リコー`.split("\n");
+
+const show = () => {
+  let idx = 1;
+  main.innerHTML = "";
+  for (const c of list) {
+    const div = document.createElement("div");
+    div.textContent = idx + ". " + c;
+    main.appendChild(div);
+    idx++;
+  }
+};
+
+show();
+btn.onclick = () => {
+  let w = 1;
+  const tick = () => {
+    shuffle(list);
+    show();
+    w++;
+    if (w < 100) {
+      setTimeout(tick, 10);
+    } else if (w < 120) {
+      setTimeout(tick, 100);
+    } else if (w < 125) {
+      setTimeout(tick, 200);
+    } else if (w < 128) {
+      setTimeout(tick, 500);
+    }
+  };
+  tick();
+};
+
+</script>
