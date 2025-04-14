@@ -1,3 +1,4 @@
+</script>
 <!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
 <title>SPシャッフル</title>
 </head><body>
@@ -21,21 +22,14 @@ main > div {
 }
 </style>
 
-
 <script type="module">
+import { CSV } from "https://js.sabae.cc/CSV.js";
 import { shuffle } from "https://js.sabae.cc/shuffle.js";
 
-const list = `デロイト
-ソニー
-伊藤忠
-MIXI
-セプテーニ
-ソフトバンク
-富士通
-ロート
-Sansan
-セコム
-リコー`.split("\n");
+const url = "https://kamiyama-kosen.github.io/kamiyama-opendata/kamiyama-sp.csv";
+
+const sps = await CSV.fetchJSON(url);
+const list = sps.map(i => i.name);
 
 const show = () => {
   let idx = 1;
@@ -71,7 +65,5 @@ btn.onclick = () => {
 </script>
 
 <hr>
+DATA: <a href=https://github.com/kamiyama-kosen/kamiyama-opendata/blob/main/kamiyama-sp.csv>SPオープンデータ</a><br>
 <a href=https://github.com/kamiyama-kosen/sp-shuffle/>src on GitHub</a>
-
-</body></html>
-
